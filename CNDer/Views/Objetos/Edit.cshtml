@@ -1,0 +1,71 @@
+@model CNDer.Models.Objeto
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Objeto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ServidorId" class="control-label"></label>
+                <select asp-for="ServidorId" class="form-control" asp-items="ViewBag.ServidorId"></select>
+                <span asp-validation-for="ServidorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumeroSei" class="control-label"></label>
+                <input asp-for="NumeroSei" class="form-control" />
+                <span asp-validation-for="NumeroSei" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoId" class="control-label"></label>
+                <select asp-for="TipoId" class="form-control" asp-items="ViewBag.TipoId"></select>
+                <span asp-validation-for="TipoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumeroTipo" class="control-label"></label>
+                <input asp-for="NumeroTipo" class="form-control" />
+                <span asp-validation-for="NumeroTipo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Penalidade" class="control-label"></label>
+                <input asp-for="Penalidade" class="form-control" />
+                <span asp-validation-for="Penalidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataInicio" class="control-label"></label>
+                <input asp-for="DataInicio" class="form-control" />
+                <span asp-validation-for="DataInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataFim" class="control-label"></label>
+                <input asp-for="DataFim" class="form-control" />
+                <span asp-validation-for="DataFim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusAtivo" class="control-label"></label>
+                <input asp-for="StatusAtivo" class="form-control" />
+                <span asp-validation-for="StatusAtivo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

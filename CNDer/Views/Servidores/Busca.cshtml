@@ -1,0 +1,144 @@
+@model CNDer.Models.Servidor
+
+@{
+}
+<br>
+<h1 style="text-align: center;">Buscar Servidor</h1>
+
+<br><div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-6">
+    <form asp-controller="Servidores" asp-action="Busca" method="get">
+    <p>
+        <div class="input-group mb-5">
+           <div class="input-group-text">
+     <i class="fas fa-user-alt"></i>
+    </div>
+       <input class="form-control" type="text" placeholder="Digite nome, cpf ou matrícula" name="searchString">
+        &nbsp;&nbsp;&nbsp;<input id="busc" type="submit" class="btn btn-info" value="Buscar" />
+        </div>
+    </p>
+</form>
+</div>
+@if(Model !=null){
+<div class="col-md-5">  </div>
+<div class="col-md-2">
+        <div class="card">
+  <div class="card-header"style="background-color: #9fcf92;">
+    <h5 class="card-title" style="text-transform: uppercase;"> <strong>@Model.Nome</strong></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" ><p> <b>CPF:</b> <var id="cpf" style="float: right"> @Model.Cpf</var></p></li>
+    <li class="list-group-item"><p><b>Matrícula:</b> <var style="float: right"> @Model.Matricula</var></p></li>
+  </ul>
+</div>
+</div>
+<div class="col-md-5"> <a asp-action="GerarCertidao" asp-route-id="@Model.Id" class="btn btn-warning"><i class="far fa-file-alt"></i></a> </div>
+
+
+
+<div class="col-md-3"></div>
+<div class="col-md-6">
+</div>
+if(Model.Objetos.Where(k => k.StatusAtivo == true).Any()){
+<div class="col-md-12">    
+        <hr style="border-top: 1px solid #808080;">
+    <br>
+  <div class="col-md-8" style="margin: auto;"> 
+  <table class="table table-sm table-bordered table-striped" style="width: 50rem; margin: auto;">
+    <thead class="thead" style="background-color: #25a2a2;">
+        <tr style="text-align: center;">
+            <th style="width: 10rem;">
+               Processo
+            </th>
+            <th style="width: 8rem;">
+               Tipo
+            </th>
+            <th style="width: 17rem;">
+               Penalidade
+            </th>
+            <th style="width: 17rem;">
+               Data inicio
+            </th>
+            <th style="width: 17rem;">
+               Data fim
+            </th>
+            <th style="width: 17rem;">
+               Duração total
+            </th>
+            <th style="width: 17rem;">
+               Dias restantes
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Objetos.Where(k => k.StatusAtivo == true)) {
+        <tr style="text-align: center;">
+            <td>
+                @item.NumeroSei
+            </td>
+            <td>
+             @item.Tipo.Nome   &nbsp;&nbsp;  @item.NumeroTipo
+            </td>
+            <td>
+               @item.Penalidade
+            </td>
+            <td>
+               <var> @CNDer.Helpers.FormatadorData.FormatarData(item.DataInicio)</var>
+            </td>
+            <td>
+              <var>@CNDer.Helpers.FormatadorData.FormatarData(item.DataFim)</var>
+            </td>
+            <td>
+           <var>@CNDer.Helpers.CalculosHelper.DuracaoPenalidade(item).Days</var>&nbsp;<var>Dias</var>
+            </td>
+            <td>
+              <var>@CNDer.Helpers.CalculosHelper.DiasRestantesPenalidade(item).Days</var>&nbsp;<var>Dias</var>
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>
+</div> 
+</div>
+}
+else{
+    <div class="col-md-12">
+        <hr style="border-top: 1px solid #808080;">
+    </div>
+   <div class="col-md-12">
+     <div class="row">
+         <h4 style="margin: auto;">Nada consta</h4>
+    </div>
+
+   </div>
+
+}
+
+}
+</div>
+<div class="col-md-3"></div>
+
+
+</div>
+<br>
+
+
+@if(Model == null){
+    @* <p>Sem resultados</p> *@
+}else{
+
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+<script>
+    $(document).ready(function () { 
+        var $mascaraCpf = $("#cpf");
+        $mascaraCpf.mask('000.000.000-00', {reverse: true});
+    });
+</script>
+
+           

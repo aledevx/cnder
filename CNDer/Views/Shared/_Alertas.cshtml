@@ -1,0 +1,67 @@
+
+@{
+    var mensagem = TempData["success"]?.ToString();
+    var success = !(string.IsNullOrEmpty(mensagem));    
+    var mensagemInfo = TempData["info"]?.ToString();
+    var info = !(string.IsNullOrEmpty(mensagemInfo)); 
+    var mensagemError = TempData["error"]?.ToString();
+    var error = !(string.IsNullOrEmpty(mensagemError)); 
+    var mensagemWarning = TempData["warning"]?.ToString();
+    var warning = !(string.IsNullOrEmpty(mensagemWarning)); 
+}
+ <script type="text/javascript">        
+     toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        </script>
+@if(success)
+{
+    <input type='hidden' id='mensagem' value='@mensagem'/>
+
+    <script type="text/javascript">        
+        var mensagem = document.getElementById('mensagem');
+       toastr["success"](mensagem.value) 
+      
+    </script>
+}   
+@if(error)
+{
+    <input type='hidden' id='mensagemError' value='@mensagemError'/>
+
+    <script type="text/javascript">        
+        var mensagemError = document.getElementById('mensagemError');     
+        toastr["error"](mensagemError.value)
+    </script>
+}   
+@if(info)
+{
+    <input type='hidden' id='mensagemInfo' value='@mensagemInfo'/>
+
+    <script type="text/javascript">        
+        var mensagemInfo = document.getElementById('mensagemInfo');
+        toastr["info"](mensagemInfo.value)      
+    </script>
+}   
+@if(warning)
+{
+    <input type='hidden' id='mensagemWarning' value='@mensagemWarning'/>
+
+    <script type="text/javascript">        
+        var mensagemWarring = document.getElementById('mensagemWarning');
+        toastr["warning"](mensagemWarning.value)           
+    </script>
+}   

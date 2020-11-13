@@ -1,0 +1,57 @@
+@model CNDer.Models.Servidor
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/imp.css">
+    <title>Certidão Negativa</title>
+    <div id="texto">
+        <h1> CERTIDÃO  NEGATIVA  DER </h1>
+        <br>
+        @if(Model.Objetos.Where(k => k.StatusAtivo == true).Any()){
+             
+            
+
+            <p>Certifica-se que <strong style="text-transform: uppercase;" > @Model.Nome </strong>, inscrito(a) no CPF sob
+            o nº <strong id="cpf"> @Model.Cpf </strong>, <strong> CONSTA AS SEGUINTES PENALIDADES: </strong>
+            </p>
+           <p>
+        @foreach (var item in Model.Objetos.Where(k => k.StatusAtivo == true)) {
+        
+            <li>@item.Penalidade</li>
+        
+        }
+        </p>
+        
+        }
+        else{
+             <p>  CERTIDÃO NEGATIVA </p>
+             <p> Certificamos, para fins de direitos que se fizerem necessários, que revendo os arquivos deta Corregedoria Geral/DER-RO,
+                  <strong> NADA CONSTA </strong> em desfavor de <strong style="text-transform: uppercase;"> @Model.Nome </strong>, Assessor Técnico, matrícula nº <b> @Model.Matricula </b> ,
+                  <strong> CPF nº @Model.Cpf </strong>, concernente à aplicação de Penalidade Administrativa Disciplinar.</p>
+                  <br>
+                  <p>O referido é verdade. Dado e passado nesta cidade de Porto Velho, capital do Estado de Rondônia, aos @DateTime.Now .</p> 
+                  <p>A presente Certidão tem validade por 90 (noventa) dias.</p>
+        }
+    </div>
+
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+<script>
+    $(document).ready(function () { 
+        var $mascaraCpf = $("#cpf");
+        $mascaraCpf.mask('000.000.000-00', {reverse: true});
+    });
+</script>
+</body>
+</html>

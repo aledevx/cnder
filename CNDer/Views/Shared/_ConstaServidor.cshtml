@@ -1,0 +1,38 @@
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Nome servidor
+            </th>
+            <th>
+                cpf servidor
+            </th>
+            <th>
+                matricula servidor
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                nome
+            </td>
+            <td>
+                cpf
+            </td>
+            <td>
+                matricula
+            </td>
+            <td>
+                <a asp-action="BuscaResult" asp-route-id="@item.Id">Visualizar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
