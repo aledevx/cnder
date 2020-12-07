@@ -24,9 +24,10 @@ namespace CNDer.Models
         public string Penalidade { get; set; }
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
+        public string Arquivo { get; set; }
         [Display(Name = "Data de inicio")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date)]        
         public System.DateTime? DataInicio { get; set; }
         [Display(Name = "Data final")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]

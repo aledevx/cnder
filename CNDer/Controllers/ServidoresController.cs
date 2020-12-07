@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CNDer.Data;
 using CNDer.Models;
+using System.Text.RegularExpressions;
 
 namespace CNDer.Controllers
 {
@@ -129,6 +130,8 @@ namespace CNDer.Controllers
                 var exist = _context.Servidores.Where(s => s.Cpf == servidor.Cpf || s.Matricula == servidor.Matricula).Any();
                 if (!exist)
                 {
+                    Regex.Replace(servidor.Cpf, @"[^\w\@]", "",
+                                RegexOptions.None, TimeSpan.FromSeconds(1.5));
                     _context.Add(servidor);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Create", "Objetos", new { ServidorId = servidor.Id });

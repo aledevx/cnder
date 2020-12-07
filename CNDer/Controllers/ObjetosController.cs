@@ -50,6 +50,7 @@ namespace CNDer.Controllers
         {
             Objeto objeto = new Objeto();
             objeto.ServidorId = Convert.ToInt32(ServidorId);
+            ViewBag.ServidorNome = _context.Servidores.Find(ServidorId).Nome;
             ViewData["ServidorId"] = new SelectList(_context.Servidores, "Id", "Nome");
             ViewData["TipoId"] = new SelectList(_context.Tipos, "Id", "Nome");
             return View(objeto);
@@ -82,8 +83,8 @@ namespace CNDer.Controllers
             {
                 return NotFound();
             }
-
             var objeto = await _context.Objetos.FindAsync(Id);
+            ViewBag.ServidorNome = _context.Servidores.Find(objeto.ServidorId).Nome;
             if (objeto == null)
             {
                 return NotFound();
@@ -98,7 +99,7 @@ namespace CNDer.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ServidorId,NumeroSei,TipoId,NumeroTipo,Penalidade,Descricao,DataInicio,DataFim,Status")] Objeto objeto)
+        public async Task<IActionResult> Edit(int id, Objeto objeto)
         {
             if (id != objeto.Id)
             {

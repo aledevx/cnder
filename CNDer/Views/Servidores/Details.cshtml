@@ -60,7 +60,7 @@
                     </thead>
                     <tbody>
                 @foreach (var item in Model.Objetos) {
-                        <tr>
+                        <tr style="text-align: center;">
                             <td style="border-bottom: 1px solid; border-left: 1px solid;">
                         <b> @Html.DisplayFor(modelItem => item.NumeroSei) </b>
                             </td>
@@ -99,79 +99,7 @@
                     </tbody>
                 </table>
         </div> 
-    @* <h3 style="margin-left: 4%; color: #3D405C"> <b> Dados do servidor</b></h3>
-    <dl class="row sem-ponta col-md-6" id="tabela-penalidades" style="margin-left: 4%; width: 20%;">
-        <dt class = "col">
-            Nome: @Html.DisplayFor(model => model.Nome)
-            <br>
-            CPF: @Html.DisplayFor(model => model.Cpf)
-            <br>
-            Matricula:  @Html.DisplayFor(model => model.Matricula)
-        </dt>
-    </dl>
-        <h2 style="margin-left: 4%; color: #3D405C">Histórico de penalidades</h2>
-                <table class="table table-sm">
-                    <thead class="thead" style="background-color: #297379;">
-                        <tr style="color: white; text-align: center">
-                            <th>
-                            Nº SEI
-                            </th>
-                            <th>
-                            Tipo
-                            </th>
-                            <th>
-                            Penalidade
-                            </th>
-                            <th>
-                                Descrição
-                            </th>
-                            <th>
-                                Data inicio
-                            </th>
-                            <th>
-                                Data fim
-                            </th>
-                            <th style="border-right: 1px solid;">
-                                Status
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                @foreach (var item in Model.Objetos) {
-                        <tr>
-                            <td style="border-bottom: 1px solid; border-left: 1px solid;">
-                        <b> @Html.DisplayFor(modelItem => item.NumeroSei) </b>
-                            </td>
-                            <td style="border-bottom: 1px solid;">
-                                @Html.DisplayFor(modelItem => item.Tipo.Nome) @Html.DisplayFor(modelItem => item.NumeroTipo)
-                            </td>
-                            <td style="border-bottom: 1px solid;">
-                                @Html.DisplayFor(modelItem => item.Penalidade)
-                            </td>
-                            <td style="border-bottom: 1px solid;">
-                                @Html.DisplayFor(modelItem => item.Descricao)
-                            </td>
-                            <td style="border-bottom: 1px solid;">
-                                @Html.DisplayFor(modelItem => item.DataInicio)
-                            </td>
-                            <td style="border-bottom: 1px solid;">
-                                @Html.DisplayFor(modelItem => item.DataFim)
-                            </td>
-                            @if(item.StatusAtivo == true){
-                            <td class="table-success" style="border-right: 1px solid; border-bottom: 1px solid; text-align: center;">
-                            Penalidade Ativa
-                            </td>
-                            }
-                            else{
-                            <td class="table-danger" style="border-right: 1px solid; border-bottom: 1px solid; text-align: center;">
-                            Penalidade Inativa
-                            </td>
-                            }
-                            <td style="border: none;"><a class="btn btn-info btn-sm" asp-action="Edit" asp-controller="Objetos" asp-route-itemid="@Model.Objetos"> Editar</a></td>
-                        </tr>
-                }
-                    </tbody>
-                </table>  *@
+    
 <br>
 <div>
     <a asp-action="Index" class="btn btn-secondary" style="margin-left: 1%;"><i class="fas fa-arrow-left"></i></a>

@@ -1,41 +1,61 @@
 @model CNDer.Models.Servidor
 
 @{
-    ViewData["Title"] = "Edit";
+ 
 }
 
-<h1>Edit</h1>
 
-<h4>Servidor</h4>
-<hr />
+<h1 style="text-align: center;" >Editar dados</h1>
+<br>
 <div class="row">
+   <div class="col-md-4"></div>
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cpf" class="control-label"></label>
-                <input asp-for="Cpf" class="form-control" />
-                <span asp-validation-for="Cpf" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Matricula" class="control-label"></label>
-                <input asp-for="Matricula" class="form-control" />
-                <span asp-validation-for="Matricula" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+            <dl class="row sem-ponta col-md-12" id="tabela-penalidades">
+                <dt class = "col">
+                    <div class="form-group has-success has-danger">
+                        <label asp-for="Nome" class="control-label" style="color: #3D405C;">Nome</label>
+                        <input asp-for="Nome" class="form-control" />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="col-md-6">   
+                            <div class="form-group has-success has-danger">
+                                <label asp-for="Cpf" class="control-label" style="color: #3D405C;"></label>
+                                <input asp-for="Cpf" id="cpf" class="form-control" />
+                                <span asp-validation-for="Cpf" class="text-danger"></span>
+                            </div>
+                        </div> 
+                        <div class="col-md-6" style="float: right; padding: 0;">
+                            <div class="form-group">
+                                <label asp-for="Matricula" class="control-label" style="color: #3D405C;"></label>
+                                <input asp-for="Matricula" class="form-control" style="margin-right: 0px;" />
+                                <span asp-validation-for="Matricula" class="text-danger"></span>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="form-group" style="float: right;">
+                        <a class="btn btn-secondary" asp-action="Details" asp-route-id="@Model.Id" ><i class="fas fa-arrow-left"></i></a>   &nbsp;&nbsp;     
+                        <input type="submit" class="btn btn-primary" value="Salvar">
+                      </div>
+                 </dt>
+                </dl>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+<script>
+    $(document).ready(function () {
+    var $mascaraCpf = $("#cpf");
+    $mascaraCpf.mask('000.000.000-00', { reverse: true });
+    });
+</script>
+
+
 

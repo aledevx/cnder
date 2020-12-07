@@ -1,67 +1,94 @@
 @model CNDer.Models.Objeto
 
 
-<h1>INSERIR PENALIDADE</h1>
-
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ServidorId" class="control-label"></label>
-                <select asp-for="ServidorId" class ="form-control" asp-items="ViewBag.ServidorId" readonly></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumeroSei" class="control-label"></label>
-                <input asp-for="NumeroSei" class="form-control" />
-                <span asp-validation-for="NumeroSei" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoId" class="control-label"></label>
-                <select asp-for="TipoId" class ="form-control" asp-items="ViewBag.TipoId" required> 
-                    <option value="">Selecione...</option>
-                </select>
-
-            </div>
-            <div class="form-group">
-                <label asp-for="NumeroTipo" class="control-label"></label>
-                <input asp-for="NumeroTipo" class="form-control" />
-                <span asp-validation-for="NumeroTipo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Penalidade" class="control-label"></label>
-                <input asp-for="Penalidade" class="form-control" />
-                <span asp-validation-for="Penalidade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descricao" class="control-label"></label>
-                <input asp-for="Descricao" class="form-control" />
-                <span asp-validation-for="Descricao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataInicio" class="control-label"></label>
-                <input asp-for="DataInicio" class="form-control" />
-                <span asp-validation-for="DataInicio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataFim" class="control-label"></label>
-                <input asp-for="DataFim" class="form-control" />
-                <span asp-validation-for="DataFim" class="text-danger"></span>
-            </div>
-            @* <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div> *@
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-controller="Servidores" asp-action="Index">Voltar</a>
-</div>
+<h1 style="text-align: center;">INSERIR PENALIDADE</h1>
+<br>
+<div class="col-md-12">
+        <div class="row" >
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+              <dl class="sem-ponta"  id="tabela-penalidades">
+              <form asp-action="Create">
+                  <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                  <div class="form-group">
+                    <div class="row col-md-12">
+                        <div class="form-group col-md-12">
+                          <div class="col-md-4" style="float: left;"> 
+                                <b style="text-align: center;"> <h3 style="font-weight: bold;"> Servidor</h3></b>
+                          </div>
+                          <div class="col-md-8" style="float: right;">
+                            
+                               <select asp-for="ServidorId" class ="form-control" asp-items="ViewBag.ServidorId" hidden></select>
+                              <input type="text" id="Servidor" value="@ViewBag.ServidorNome" class="form-control" readonly>
+                           </div>
+                        </div>
+                        
+                                  <div class="col-md-5">
+                                        <label asp-for="NumeroSei" class="control-label">Nº processo SEI</label>
+                                        <input asp-for="NumeroSei" class="form-control" />
+                                        <span  asp-validation-for="NumeroSei" class="text-danger"></span>
+                                  </div>
+                                  <div class="col-md-3">
+                                        <label asp-for="TipoId" class="control-label">Tipo</label>
+                                        <select asp-for="TipoId" class ="form-control" asp-items="ViewBag.TipoId" required> 
+                                            <option value="">Selecione...</option>
+                                        </select>
+                                  </div>
+                                 <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label asp-for="NumeroTipo" class="control-label">Número</label>
+                                            <input asp-for="NumeroTipo" class="form-control" />
+                                            <span asp-validation-for="NumeroTipo" class="text-danger"></span>
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="Penalidade" class="control-label">Penalidade</label>
+                                    <input asp-for="Penalidade" class="form-control" />
+                                    <span asp-validation-for="Penalidade" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label asp-for="Descricao" class="control-label">Descrição</label>
+                                    <input asp-for="Descricao" class="form-control"/>  
+                                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                  <div class="form-group" > 
+                                      <label class="control-label" asp-for="Arquivo">Arquivo</label>
+                                      <input asp-for="Arquivo" class="form-control" />
+                                      <span asp-validation-for="Arquivo" class="text-danger"></span>
+                                  </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                  <label asp-for="DataInicio" class="control-label">Data Inicio</label>
+                                  <input asp-for="DataInicio" class="form-control" />
+                                  <span asp-validation-for="DataInicio" class="text-danger"></span>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="DataFim" class="control-label">Data fim</label>
+                                    <input asp-for="DataFim" class="form-control" />
+                                    <span asp-validation-for="DataFim" class="text-danger"></span>
+                                </div>
+                        </div>
+                          <div class="col-md-12">
+                                <div style="float: right;">
+                                  <a asp-action="Index" asp-controller="Servidores" class="btn btn-secondary"><i class="fas fa-arrow-left"></i></a>   &nbsp;&nbsp;     
+                                  <input type="submit" class="btn btn-primary" value="Cadastrar" style="align-items: right;">
+                                </div>
+                      </div>
+                      </div>
+                    </div>      
+                  </form>
+              </dl>
+          </div>
+      </div>
+      </div>
 

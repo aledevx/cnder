@@ -41,12 +41,19 @@
                     </a>
     
                 </li>
-                    <a class="nav-link" asp-action='Logout' asp-controller='Autenticacao'>
+                @if(User.Identity.IsAuthenticated){
+                    <a class="nav-link" asp-action="Logout" asp-controller="Autenticacao">
                         Sair
                         <i class="fas fa-door-open"></i>
                         @* <span class="badge badge-warning navbar-badge">15</span> *@
                     </a>
-    
+                }
+                else{
+                     <a class="nav-link" asp-action="Login" asp-controller="Autenticacao">
+                        Entrar
+                        <i class="fas fa-door-closed"></i>
+                     </a>
+                }    
                 </li>
                
             </ul>
@@ -70,7 +77,12 @@
                         <img src="~/dist/img/Avatar.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
+                        @if(User.Identity.IsAuthenticated){
                         <a href="#" class="d-block">@User.Identity.Name</a>
+                        }
+                        else{
+                            <a href="#" class="d-block">Usuário</a>
+                        }
                     </div>
                 </div>
                      <partial name="_Menu"/>        
