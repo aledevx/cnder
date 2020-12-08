@@ -15,7 +15,7 @@ namespace CNDer.Models
         public string Nome { get; set; }
 
         [Display(Name = "Nº CPF")]
-        [StringLength(11, MinimumLength = 11, ErrorMessage = "O CPF deve conter 11 digitos")]
+        [StringLength(14, MinimumLength = 14, ErrorMessage = "O CPF deve conter 11 digitos")]
         [Required(ErrorMessage = "O campo CPF não pode ficar em branco")]
 
         public string Cpf { get; set; }

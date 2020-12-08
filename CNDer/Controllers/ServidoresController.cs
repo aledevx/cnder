@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CNDer.Data;
 using CNDer.Models;
 using System.Text.RegularExpressions;
+using CNDer.Helpers;
 
 namespace CNDer.Controllers
 {
@@ -44,7 +45,7 @@ namespace CNDer.Controllers
             .ThenInclude(o => o.Tipo)
             .Where(s => s.Cpf == searchString || s.Matricula == searchString || s.Nome == searchString);
 
-            
+
             return View(await servidor.FirstOrDefaultAsync());
         }
 
@@ -125,13 +126,12 @@ namespace CNDer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,Cpf,Matricula")] Servidor servidor)
         {
+            servidor.Cpf = Helpers.FormatadorHelper.RemoveCaracteresCPF(servidor.Cpf);
             if (ModelState.IsValid)
             {
                 var exist = _context.Servidores.Where(s => s.Cpf == servidor.Cpf || s.Matricula == servidor.Matricula).Any();
                 if (!exist)
                 {
-                    Regex.Replace(servidor.Cpf, @"[^\w\@]", "",
-                                RegexOptions.None, TimeSpan.FromSeconds(1.5));
                     _context.Add(servidor);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Create", "Objetos", new { ServidorId = servidor.Id });
@@ -249,7 +249,19 @@ namespace CNDer.Controllers
 
         }
 
-
+        public static string RemoveCaracteresCPF(string text)
+        {
+            if (text == null)
+            {
+                return "";
+            }
+            return text.Replace(".", "").Replace("-", "").Replace("/", "");
+        }
 
     }
 }
+
+
+
+    
+
