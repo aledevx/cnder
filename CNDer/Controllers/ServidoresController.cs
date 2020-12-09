@@ -15,7 +15,6 @@ namespace CNDer.Controllers
     public class ServidoresController : Controller
     {
         private readonly Contexto _context;
-        private readonly ObjetosController _objetoController;
 
         public ServidoresController(Contexto context)
         {
@@ -33,19 +32,28 @@ namespace CNDer.Controllers
             }
             return View(await servidores.ToListAsync());
         }
-        public async Task<IActionResult> Busca(string searchString)
+        public async Task<IActionResult> Busca(string searchString = null)
         {
             //    var servidores = from s in _context.Servidores
             //          select s;
             //     if (!String.IsNullOrEmpty(searchString))
             //     {
             //         servidores = servidores.Where(s => s.Cpf == searchString || s.Matricula == searchString || s.Nome == searchString);
-            //     }
+            //     }FF
+            if(searchString == null){
+                ViewBag.primeiraVez = true;
+            } 
+
             var servidor = _context.Servidores.Include(s => s.Objetos)
             .ThenInclude(o => o.Tipo)
             .Where(s => s.Cpf == searchString || s.Matricula == searchString || s.Nome == searchString);
 
-
+             if(searchString != null && servidor.Count() == 0 ){
+                 ViewBag.primeiraVez = false;
+            }else{
+                ViewBag.primeiraVez = true;
+            }
+            
             return View(await servidor.FirstOrDefaultAsync());
         }
 
@@ -168,7 +176,7 @@ namespace CNDer.Controllers
             {
                 return NotFound();
             }
-
+            servidor.Cpf = Helpers.FormatadorHelper.RemoveCaracteresCPF(servidor.Cpf);
             if (ModelState.IsValid)
             {
                 try

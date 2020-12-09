@@ -15,6 +15,7 @@ namespace CNDer.Models
         [Display(Name = "Servidor")]
         public int ServidorId { get; set; }
         [Display(Name = "Nº do processo SEI!")]
+        [Required(ErrorMessage = "Informe o número do processo")]
         public string NumeroSei { get; set; }
         public Tipo Tipo { get; set; }
         [Display(Name = "Tipo")]

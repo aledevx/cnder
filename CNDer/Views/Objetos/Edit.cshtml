@@ -58,7 +58,14 @@
                                     <span asp-validation-for="Descricao" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-md-6"></div>
+                            <div class="col-md-4">
+                                  <div class="form-group" > 
+                                      <label class="control-label" asp-for="Arquivo">Arquivo</label>
+                                      <input asp-for="Arquivo" class="form-control" />
+                                      <span asp-validation-for="Arquivo" class="text-danger"></span>
+                                  </div>
+                            </div>
+                            <div class="col-md-2"></div>
                             <div class="col-md-3">
                               <div class="form-group">
                                   <label asp-for="DataInicio" class="control-label">Data Inicio</label>

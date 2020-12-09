@@ -3,7 +3,7 @@
 @{
 }
 <br>
-<h1 style="text-align: center;">Buscar Servidor</h1>
+<h1 style="text-align: center; color: #3D405C;">Buscar Servidor</h1>
 
 <br><div class="row">
 <div class="col-md-3"></div>
@@ -102,6 +102,8 @@ if(Model.Objetos.Where(k => k.StatusAtivo == true).Any()){
 }
     </tbody>
 </table>
+<br>
+<br>
 </div> 
 </div>
 }
@@ -114,23 +116,37 @@ else{
        <br>
      <div class="row">
          <h4 style="margin: auto;"><i class="fas fa-times" style="margin-right: 12px; color: red;"></i>O servidor não possui penalidades ativas</h4>
+         
     </div>
 
    </div>
-
+    <br>
+    <br>
 }
 
 }
 </div>
 <div class="col-md-3"></div>
-
-
-</div>
+<br>
 <br>
 
+</div>
 
-@if(Model == null){
-    @* <p>Sem resultados</p> *@
+
+@if(!ViewBag.primeiraVez){
+   <div class="col-md-12">
+       <br>
+     <div class="row">
+         <div class="alert alert-danger" role="alert" style="margin: auto; opaticy: 0.5;">
+            <h4 class="alert-heading">SERVIDOR NÃO ENCONTRADO!</h4>
+            <p>Verifique se o nome do <b>servidor</b>, <b>cpf</b> ou <b>matrícula</b> foram digitados corretamente.</p>
+          </div>
+    </div>
+
+   </div>
+   <br>
+   <br>
+   <br>
 }else{
 
 }

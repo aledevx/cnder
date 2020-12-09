@@ -15,7 +15,7 @@
                     <dt class = "col">
                         Nome: @Html.DisplayFor(model => model.Nome)
                         <br>
-                        CPF: @Html.DisplayFor(model => model.Cpf)
+                        CPF: <var id="cpf" style="color: black;"> @Html.DisplayFor(model => model.Cpf)</var>
                         <br>
                         Matricula:  @Html.DisplayFor(model => model.Matricula)
                     </dt>
@@ -104,3 +104,13 @@
 <div>
     <a asp-action="Index" class="btn btn-secondary" style="margin-left: 1%;"><i class="fas fa-arrow-left"></i></a>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+<script>
+    $(document).ready(function () { 
+        var $mascaraCpf = $("#cpf");
+        $mascaraCpf.mask('000.000.000-00', {reverse: true});
+    });
+</script>
