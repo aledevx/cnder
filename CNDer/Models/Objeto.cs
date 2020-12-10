@@ -21,9 +21,12 @@ namespace CNDer.Models
         [Display(Name = "Tipo")]
         public int TipoId { get; set; }
         [Display(Name = "Número")]
+        [Required(ErrorMessage = "Esse campo não pode ficar em branco")]
         public string NumeroTipo { get; set; }
+        [Required(ErrorMessage = "preencha o campo penalidade")]
         public string Penalidade { get; set; }
         [Display(Name = "Descrição")]
+        [Required(ErrorMessage = "Esse campo não pode ficar em branco")]
         public string Descricao { get; set; }
         public string Arquivo { get; set; }
         [Display(Name = "Data de inicio")]

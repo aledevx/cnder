@@ -71,6 +71,7 @@ namespace CNDer.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Servidores");
             }
+            ViewBag.ServidorNome = _context.Servidores.Find(objeto.ServidorId).Nome;
             ViewData["ServidorId"] = new SelectList(_context.Servidores, "Id", "Nome", objeto.ServidorId);
             ViewData["TipoId"] = new SelectList(_context.Tipos, "Id", "Nome", objeto.TipoId);
             return View(objeto);
@@ -126,6 +127,7 @@ namespace CNDer.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.ServidorNome = _context.Servidores.Find(objeto.ServidorId).Nome;
             ViewData["ServidorId"] = new SelectList(_context.Servidores, "Id", "Nome", objeto.ServidorId);
             ViewData["TipoId"] = new SelectList(_context.Tipos, "Id", "Nome", objeto.TipoId);
             return View(objeto);
